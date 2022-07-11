@@ -7,7 +7,8 @@ export default class FetchData extends React.Component {
         super(props);
         this.state = { 
             loading: true,
-            felons: []
+            felons: [],
+            index: 0
         };
     }
 
@@ -17,10 +18,8 @@ export default class FetchData extends React.Component {
         const data = await response.json();
         this.setState({ 
             felons: data.items, 
-            loading: false,
-            index: 0
+            loading: false
         });
-
     }   
 
     next = () => {
@@ -71,17 +70,22 @@ export default class FetchData extends React.Component {
                 ))}
             </div>
         */
-        
 
-        if (felonsJsx[this.state.index].name != "missing") {
+        if ((this.state.index % felonsJsx.length) === 0) {
+            
+            this.setState({
+                index: 1
+            });
+        }
+        if (felonsJsx[this.state.index].name !== "missing") {
             return (
                 <div>
                     <div>
                         <div>{this.state.index}: {felonsJsx[this.state.index].name}</div>
+                        <div>{felonsJsx[this.state.index].description}</div>
                         <button onClick={this.next}>next</button>
                     </div>
                 </div>
-
             );
         } else {
             this.setState({
@@ -90,4 +94,5 @@ export default class FetchData extends React.Component {
         }
 
     }
+
 }
