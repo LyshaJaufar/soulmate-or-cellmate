@@ -1,4 +1,5 @@
 import React from "react";
+import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 
 export default class FetchData extends React.Component {
 
@@ -10,19 +11,25 @@ export default class FetchData extends React.Component {
         };
     }
 
-
-
     async componentDidMount() {
         const url = "https://api.fbi.gov/wanted/v1/list?page=2";
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({ felons: data.items, loading: false });
+        this.setState({ 
+            felons: data.items, 
+            loading: false,
+            index: 0
+        });
+
     }   
 
-
+    next = () => {
+        this.setState({
+            index: this.state.index + 1
+        });
+    };
 
     render() {
-        
         /*
             const felonsJsx = this.state.felons.map((felon, i) => (
                 <div key={`some-felon-${i}`}>
@@ -32,6 +39,7 @@ export default class FetchData extends React.Component {
         */
 
         const felonsJsx = this.state.felons.map((felon, i) => ({
+            
             name: felon.aliases ? felon.aliases[0] : "missing",
             DOB: felon.dates_of_birth_used ? felon.dates_of_birth_used : "missing",
             nationality: felon.nationality ? felon.nationality : "missing",
@@ -53,8 +61,33 @@ export default class FetchData extends React.Component {
 
             return <div>didn't get a person</div>;
         }
-        return (
-            <div>{felonsJsx[19]['name']}</div>
-        );
+
+        /*
+            <div>
+                {felonsJsx.map((felon, i) => (
+                    <div key={`some-felon-${i}`}>
+                        <div>{felon.eyes}</div>
+                    </div>
+                ))}
+            </div>
+        */
+        
+
+        if (felonsJsx[this.state.index].name != "missing") {
+            return (
+                <div>
+                    <div>
+                        <div>{this.state.index}: {felonsJsx[this.state.index].name}</div>
+                        <button onClick={this.next}>next</button>
+                    </div>
+                </div>
+
+            );
+        } else {
+            this.setState({
+                index: this.state.index + 1
+            });
+        }
+
     }
 }
