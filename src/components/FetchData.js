@@ -38,7 +38,8 @@ export default class FetchData extends React.Component {
         */
 
         const felonsJsx = this.state.felons.map((felon, i) => ({
-            
+            felonUrl: felon.url,
+            image: `${felon.url}/@@images/image/preview`,
             name: felon.aliases ? felon.aliases[0] : "missing",
             DOB: felon.dates_of_birth_used ? felon.dates_of_birth_used : "missing",
             nationality: felon.nationality ? felon.nationality : "missing",
@@ -72,7 +73,6 @@ export default class FetchData extends React.Component {
         */
 
         if ((this.state.index % felonsJsx.length) === 0) {
-            
             this.setState({
                 index: 1
             });
@@ -82,7 +82,7 @@ export default class FetchData extends React.Component {
                 <div>
                     <div>
                         <div>{this.state.index}: {felonsJsx[this.state.index].name}</div>
-                        <div>{felonsJsx[this.state.index].description}</div>
+                        <img src={felonsJsx[this.state.index].image}></img>
                         <button onClick={this.next}>next</button>
                     </div>
                 </div>
