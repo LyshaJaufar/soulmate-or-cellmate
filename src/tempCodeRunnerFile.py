@@ -1,1 +1,2 @@
-warning_msg = (doc.find(id="cxyz_4").next_element).next_element
+        hair_colour_found = False
+        eye_colour_found = False
