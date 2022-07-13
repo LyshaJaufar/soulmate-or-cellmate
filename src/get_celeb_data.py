@@ -29,3 +29,18 @@ for tableData in doc.find_all('td'):
         print(tableData.next_sibling.get_text())
     if (re.search(tableData.get_text(), "trademarks", re.IGNORECASE)):
         print(tableData.next_sibling.get_text())
+
+quotes = []
+found = False
+i = 0
+for child in doc.find(id="biography"):
+    if i == 1:
+        print(child)
+    i += 1
+    x = child.get_text()
+    if (re.search("quotes", x, re.IGNORECASE)):
+        found = True
+    if (found):
+        quotes.append(child.get_text())
+
+print(quotes[-1].split('.')[0])
