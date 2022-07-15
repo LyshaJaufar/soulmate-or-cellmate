@@ -1,2 +1,3 @@
-        hair_colour_found = False
-        eye_colour_found = False
+    jsonFile = open("src/data.json", "w")
+    jsonFile.write(json.dumps(jsonObj))
+    jsonFile.close()

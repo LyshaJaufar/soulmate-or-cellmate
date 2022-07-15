@@ -20,6 +20,7 @@ export default class FetchData extends React.Component {
         for (var i = 0; i < numOfPages; i++) {
             dataPages.push(await (await fetch(`https://api.fbi.gov/wanted/v1/list?page=${i + 1}`)).json())
             allPages.push(dataPages[i].items)
+            // 
         }
 
         this.setState({ 

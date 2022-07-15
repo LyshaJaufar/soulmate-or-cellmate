@@ -3,15 +3,38 @@ import requests
 import re
 import json
 from celebrity import Celebrity
+from flask import Flask
+from flask_restful import Api, Resource
+from flask import jsonify
 
+app = Flask(__name__)
+api = Api(app)
+
+"""
 jsonObj = {
     "results": [
 
     ]
 }
+"""
+results = []
+
+# Rest API
+class CelebData(Resource):
+    def get(self):
+        response = jsonify(message=results)
+        # Enable Access-Control-Allow-Origin
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
+
+
+api.add_resource(CelebData, "/testing")
 
 
 def main():
+    if __name__ == 'main':
+        app.run()
+
     # Fetch celeb names from home page
     home_url = f"https://celebrityxyz.com/list/profession/actor"
     home_page = requests.get(home_url).text
@@ -28,7 +51,7 @@ def main():
             links.append(link.get('href'))
 
     create_json_obj(actresses, links)
-    write_to_file()
+    # write_to_file()
 
 
 def create_json_obj(actresses, links):
@@ -38,7 +61,7 @@ def create_json_obj(actresses, links):
             current_actress = Celebrity(actress.lower().replace(
                 ' ', '-'), actress_links_dict[actress])
             current_actress.fetch_data()
-            jsonObj['results'].append({
+            results.append({
 
                 "DOB": current_actress.DOB,
                 "image": current_actress.img,
@@ -58,8 +81,9 @@ def create_json_obj(actresses, links):
 
 
 def write_to_file():
-    jsonFile = open("src/data.json", "w")
-    jsonFile.write(json.dumps(jsonObj))
+    jsonFile = open("data2.json", "w")
+    # jsonFile.write(json.dumps(jsonObj))
     jsonFile.close()
+
 
 main()

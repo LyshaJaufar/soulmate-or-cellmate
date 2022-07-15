@@ -22,6 +22,7 @@ class Celebrity:
         self.occupation = []
 
     def fetch_data(self):
+        print(self.name)
         url = f"https://celebrityxyz.com{self.link}"
         page = requests.get(url).text
         doc = BeautifulSoup(page, "html.parser")
