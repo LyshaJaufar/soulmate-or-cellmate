@@ -106,20 +106,42 @@ export default class FetchFelonData extends React.Component {
                 index: 1
             });
         }
-        console.log(this.state.felonsPages[0])
-        var heightFeet = null
-        var heightInches = null
+
+        var height = null
         var heightText = null
+        var weight = null
+        var eyeColour = null
+        var hairColour = null
+        var placeOfBirthText = null
+        var ethnicityText = null
         
         if (felonsJsx[this.state.index].height != null) {
-            var height = parseInt(felonsJsx[this.state.index].height)/12
-            heightFeet = String(height)[0]
-            heightInches = String(height)[2]
-            heightText = heightFeet + "'" + heightInches
+            height = parseInt(felonsJsx[this.state.index].height) * 2.54
+            heightText = String(height).substring(0, 3) + " CM"
+        }
+
+        if (felonsJsx[this.state.index].weight != null) {
+            weight = " | " + felonsJsx[this.state.index].weight + " pounds"
+        }
+
+        if (felonsJsx[this.state.index].eyes != null) {
+            eyeColour = " | " + felonsJsx[this.state.index].eyes + " eyes"
+        }
+
+        if (felonsJsx[this.state.index].hair != null) {
+            hairColour = felonsJsx[this.state.index].hair + " hair" 
+        }
+
+        if (felonsJsx[this.state.index].placeOfBirth != null) {
+            placeOfBirthText = "Originally from " + felonsJsx[this.state.index].placeOfBirth 
         }
 
         if (felonsJsx[this.state.index].redFlag != null){
             var redFlagLower = (felonsJsx[this.state.index].redFlag).toLowerCase()
+        }
+
+        if (felonsJsx[this.state.index].race != null) {
+            ethnicityText = " | " + felonsJsx[this.state.index].race
         }
         
         var ethnicityImg = null
@@ -127,10 +149,11 @@ export default class FetchFelonData extends React.Component {
         var occupationImg = null
         var locationImg = null
         var redFlagImg = null
-        if (felonsJsx[this.state.index].nationality != null || !felonsJsx[this.state.index].race != null) {
+        
+        if (felonsJsx[this.state.index].nationality != null || felonsJsx[this.state.index].race != null) {
             ethnicityImg = <img src={ethnicity} class="icon"  alt="ethnicity" />
         }
-        if (felonsJsx[this.state.index].height != null || !felonsJsx[this.state.index].weight != null) {
+        if (felonsJsx[this.state.index].height != null || felonsJsx[this.state.index].weight != null) {
             personImg = <img src={person} class="icon"  alt="person" />   
         }
         if (felonsJsx[this.state.index].occupation != null) {
@@ -152,22 +175,22 @@ export default class FetchFelonData extends React.Component {
                             </div>
                             <div>
                                 {ethnicityImg} 
-                                {felonsJsx[this.state.index].nationality} | {felonsJsx[this.state.index].race}                      
+                                {felonsJsx[this.state.index].nationality}{ethnicityText}                      
                             </div>
                             <div>
                                 {locationImg}   
-                                Originally from {felonsJsx[this.state.index].placeOfBirth}                                        
-                            </div>
-                            <div>
-                                {occupationImg}
-                                {felonsJsx[this.state.index].occupation}
+                                {placeOfBirthText}                                       
                             </div>
                             <div>
                                 {redFlagImg}
                                 {redFlagLower}
                             </div>
                             <div>
-                                {felonsJsx[this.state.index].hair} | {felonsJsx[this.state.index].eyes}                           
+                                {personImg}
+                                {heightText}{weight}
+                            </div>
+                            <div>
+                                {hairColour}{eyeColour}                           
                             </div>
                             <button onClick={this.next}>next</button>
                         </div>

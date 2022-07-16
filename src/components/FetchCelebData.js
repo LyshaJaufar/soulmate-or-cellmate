@@ -59,23 +59,25 @@ export default class FetchCelebData extends React.Component {
         });
     };
 
+
     render() {
+    
         if (this.state.celebData !== null){
             console.log(this.state.celebData)
             const celebJsx = this.state.celebData.map((celeb, i) => ({
-                DOB: celeb.DOB ? celeb.DOB : "missing",
+                DOB: celeb.DOB ? celeb.DOB : null,
                 image: celeb.image,
-                eyeColour: celeb['eye colour'] ? celeb['eye colour'] : "missing",
-                hairColour: celeb['hair colour'] ? celeb['hair colour'] : "missing",
-                placeOfBirth: celeb['place of birth'] ? celeb['place of birth'] : "missing",
-                height: celeb['height'] ? celeb['height'] : "missing",            
-                weight: celeb.weight ? celeb.weight : "missing",
-                nationality: celeb.nationality ? celeb.nationality : "missing",
-                race: celeb.race ? celeb.race : "missing",
-                trademarks: celeb.trademarks ? celeb.trademarks : "missing",        
-                red_flags: celeb['red flags'] ? celeb['red flags'] : "missing",
-                bio: celeb.bio ? celeb.bio : "missing",
-                occupation: celeb.occupation ? celeb.occupation : "missing"               
+                eyeColour: celeb['eye colour'] ? celeb['eye colour'] : null,
+                hairColour: celeb['hair colour'] ? celeb['hair colour'] : null,
+                placeOfBirth: celeb['place of birth'] ? celeb['place of birth'] : null,
+                height: celeb['height'] ? celeb['height'] : null,            
+                weight: celeb.weight ? celeb.weight : null,
+                nationality: celeb.nationality ? celeb.nationality : null,
+                race: celeb.race ? celeb.race : null,
+                trademarks: celeb.trademarks ? celeb.trademarks : null,        
+                red_flags: celeb['red flags'] ? celeb['red flags'] : null,
+                bio: celeb.bio ? celeb.bio : null,
+                occupation: celeb.occupation ? celeb.occupation : null              
             }));
 
 
@@ -84,19 +86,86 @@ export default class FetchCelebData extends React.Component {
                     index: 1
                 });
             }
+
+            var weight = null
+            var eyeColour = null
+            var hairColour = null
+            var placeOfBirthText = null
+            var ethnicityText = null
+
+            if (celebJsx[this.state.index].weight != null) {
+                weight = " | " + celebJsx[this.state.index].weight + " pounds"
+            }
+
+            if (celebJsx[this.state.index].eyes != null) {
+                eyeColour = " | " + celebJsx[this.state.index].eyes + " eyes"
+            }
+
+            if (celebJsx[this.state.index].hair != null) {
+                hairColour = celebJsx[this.state.index].hair + " hair" 
+            }
+
+            if (celebJsx[this.state.index].placeOfBirth != null) {
+                placeOfBirthText = "Originally from " + celebJsx[this.state.index].placeOfBirth 
+            }
+
+            if (celebJsx[this.state.index].redFlag != null){
+                var redFlagLower = (celebJsx[this.state.index].redFlag).toLowerCase()
+            }
+
+            if (celebJsx[this.state.index].race != null) {
+                ethnicityText = " | " + celebJsx[this.state.index].race
+            }
+            
+            var ethnicityImg = null
+            var personImg = null
+            var occupationImg = null
+            var locationImg = null
+            var redFlagImg = null
+            
+            if (celebJsx[this.state.index].nationality != null || celebJsx[this.state.index].race != null) {
+                ethnicityImg = <img src={ethnicity} class="icon"  alt="ethnicity" />
+            }
+            if (celebJsx[this.state.index].height != null || celebJsx[this.state.index].weight != null) {
+                personImg = <img src={person} class="icon"  alt="person" />   
+            }
+            if (celebJsx[this.state.index].occupation != null) {
+                occupationImg = <img src={occupation} class="icon"  alt="occupation" /> 
+            }
+            if (celebJsx[this.state.index].placeOfBirth != null) {
+                locationImg = <img src={location} class="icon"  alt="location" />   
+            }
+            if (celebJsx[this.state.index].redFlag != null) {
+                redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
+            }
+
+
             if (celebJsx[this.state.index].DOB !== "missing") {
                 return (
                     <div>
                         <div>
                             <div>
-                                <div>{celebJsx[this.state.index].eyeColour}, {celebJsx[this.state.index].DOB}</div>
+                                <div>{celebJsx[this.state.index].DOB}</div>
                             </div>
-                            <img src={ethnicity} class="icon"  alt="ethnicity" />
-                            <img src={person} class="icon"  alt="person" />
-                            <img src={location} class="icon"  alt="location" />
-                            <img src={occupation} class="icon"  alt="occupation" />
-                            <img src={red_flag} class="icon"  alt="red flag" />
-                            <div>{this.state.index}: {celebJsx[this.state.index].trademarks}</div>
+                            <div>
+                                {ethnicityImg} 
+                                {celebJsx[this.state.index].nationality}{ethnicityText}                      
+                            </div>
+                            <div>
+                                {locationImg}   
+                                {placeOfBirthText}                                       
+                            </div>
+                            <div>
+                                {redFlagImg}
+                                {redFlagLower}
+                            </div>
+                            <div>
+                                {personImg}
+                                {celebJsx[this.state.index].height}{weight}
+                            </div>
+                            <div>
+                                {hairColour}{eyeColour}                           
+                            </div>
                             <button onClick={this.next}>next</button>
                         </div>
                     </div>
