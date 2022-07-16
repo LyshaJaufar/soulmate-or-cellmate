@@ -1,7 +1,7 @@
 import React from "react";
 import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 
-export default class FetchData extends React.Component {
+export default class FetchFelonData extends React.Component {
 
     constructor(props) {
         super(props);
@@ -61,6 +61,7 @@ export default class FetchData extends React.Component {
             description: felon.description ? felon.description : "missing"
         }));
         */
+
         const felonsJsx = []
         for (var i = 0; i < this.state.felonsPages.length; i++) {
             this.state.felonsPages[i].forEach(felon => {
