@@ -4,7 +4,6 @@ import FetchFelonData from "./components/FetchFelonData";
 import FetchCelebData from "./components/FetchCelebData";
 import Header from "./components/Header";
 import Preface from "./components/Preface";
-import $ from 'jquery'
 
 class App extends Component {
 

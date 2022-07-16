@@ -1,5 +1,9 @@
 import React from "react";
-import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
+import location from "../assets/location.png";
+import person from "../assets/person.png";
+import ethnicity from "../assets/ethnicity.png";
+import occupation from "../assets/occupation.png";
+import red_flag from "../assets/red_flag.png";
 
 export default class FetchFelonData extends React.Component {
 
@@ -104,13 +108,19 @@ export default class FetchFelonData extends React.Component {
         }
         if (felonsJsx[this.state.index].name !== "missing") {
             return (
-                <div>
                     <div>
-                        <div>{this.state.index}: {felonsJsx[this.state.index].name}</div>
-                        <img src={felonsJsx[this.state.index].image}></img>
-                        <button onClick={this.next}>next</button>
+                        <div>
+                            <div>
+                                <div>{felonsJsx[this.state.index].name}, {felonsJsx[this.state.index].DOB}</div>
+                            </div>
+                            <img src={ethnicity} class="icon"  alt="ethnicity" />
+                            <img src={person} class="icon"  alt="person" />
+                            <img src={location} class="icon"  alt="location" />
+                            <img src={occupation} class="icon"  alt="occupation" />
+                            <img src={red_flag} class="icon"  alt="red flag" />
+                            <button onClick={this.next}>next</button>
+                        </div>
                     </div>
-                </div>
             );
         } else {
             this.setState({

@@ -7,6 +7,10 @@
   pointer-events: none;
 }
 
+.icon {
+  width: 8%;
+}
+
 .title{
   font-size: large;
 }
