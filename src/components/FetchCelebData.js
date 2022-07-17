@@ -98,12 +98,12 @@ export default class FetchCelebData extends React.Component {
                 weight = " | " + celebJsx[this.state.index].weight + " pounds"
             }
 
-            if (celebJsx[this.state.index].eyes != null) {
-                eyeColour = " | " + celebJsx[this.state.index].eyes + " eyes"
+            if (celebJsx[this.state.index].eyeColour != null) {
+                eyeColour = " | " + celebJsx[this.state.index].eyeColour + " eyes"
             }
 
-            if (celebJsx[this.state.index].hair != null) {
-                hairColour = celebJsx[this.state.index].hair + " hair" 
+            if (celebJsx[this.state.index].hairColour != null) {
+                hairColour = celebJsx[this.state.index].hairColour + " hair" 
             }
 
             if (celebJsx[this.state.index].placeOfBirth != null) {
