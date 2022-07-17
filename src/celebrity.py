@@ -54,18 +54,19 @@ class Celebrity:
         for tableData in doc.find_all('td'):
             tableData_text = tableData.get_text().replace(')', "")
             tableData_text2 = tableData_text.replace('(', "").strip(' ')
+            temp = tableData_text.replace(' ', "")
 
             onlyAlpha = False
-            if tableData_text2.isalpha == True:
+            if temp.isalpha() == True:
                 onlyAlpha = True
             if onlyAlpha == True:
-                if (re.search(tableData_text2, "hair color", re.IGNORECASE)):
+                if ("hair color" in tableData_text2.lower()):
                     self.hair_colour = tableData.next_sibling.get_text().strip(' ')
-                if (re.search(tableData_text2, "eye color", re.IGNORECASE)):
+                if ("eye color" in tableData_text2.lower()):
                     self.eye_colour = tableData.next_sibling.get_text().strip(' ')
-                if (re.search(tableData_text2, "ethnicity", re.IGNORECASE)):
+                if ("ethnicity" in tableData_text2.lower()):
                     self.race = tableData.next_sibling.get_text().strip(' ')
-                if (re.search(tableData_text2, "trademarks", re.IGNORECASE)):
+                if ("trademark" in tableData_text2.lower()):
                     self.trademarks = tableData.next_sibling.get_text().strip(' ')
 
         quotes = []

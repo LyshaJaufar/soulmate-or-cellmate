@@ -10,16 +10,18 @@ from flask import jsonify
 app = Flask(__name__)
 api = Api(app)
 
-"""
+
 jsonObj = {
     "results": [
 
     ]
 }
-"""
+
 results = []
 
 # Rest API
+
+
 class CelebData(Resource):
     def get(self):
         response = jsonify(message=results)
@@ -51,7 +53,7 @@ def main():
             links.append(link.get('href'))
 
     create_json_obj(actresses, links)
-    # write_to_file()
+    write_to_file()
 
 
 def create_json_obj(actresses, links):
@@ -61,7 +63,7 @@ def create_json_obj(actresses, links):
             current_actress = Celebrity(actress.lower().replace(
                 ' ', '-'), actress_links_dict[actress])
             current_actress.fetch_data()
-            results.append({
+            jsonObj['results'].append({
 
                 "DOB": current_actress.DOB,
                 "image": current_actress.img,
@@ -81,8 +83,8 @@ def create_json_obj(actresses, links):
 
 
 def write_to_file():
-    jsonFile = open("data2.json", "w")
-    # jsonFile.write(json.dumps(jsonObj))
+    jsonFile = open("src/data.json", "w")
+    jsonFile.write(json.dumps(jsonObj))
     jsonFile.close()
 
 

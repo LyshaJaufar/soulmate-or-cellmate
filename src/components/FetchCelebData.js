@@ -92,6 +92,7 @@ export default class FetchCelebData extends React.Component {
             var hairColour = null
             var placeOfBirthText = null
             var ethnicityText = null
+            var redFlagLower = null
 
             if (celebJsx[this.state.index].weight != null) {
                 weight = " | " + celebJsx[this.state.index].weight + " pounds"
@@ -109,8 +110,8 @@ export default class FetchCelebData extends React.Component {
                 placeOfBirthText = "Originally from " + celebJsx[this.state.index].placeOfBirth 
             }
 
-            if (celebJsx[this.state.index].redFlag != null){
-                var redFlagLower = (celebJsx[this.state.index].redFlag).toLowerCase()
+            if (celebJsx[this.state.index].red_flags != null){
+                redFlagLower = (celebJsx[this.state.index].red_flags).toLowerCase()
             }
 
             if (celebJsx[this.state.index].race != null) {
@@ -135,10 +136,10 @@ export default class FetchCelebData extends React.Component {
             if (celebJsx[this.state.index].placeOfBirth != null) {
                 locationImg = <img src={location} class="icon"  alt="location" />   
             }
-            if (celebJsx[this.state.index].redFlag != null) {
+            if (celebJsx[this.state.index].red_flags != null && celebJsx[this.state.index].red_flags != "\u00a0") {
                 redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
             }
-
+            console.log(celebJsx[this.state.index].red_flag)
 
             if (celebJsx[this.state.index].DOB !== "missing") {
                 return (
