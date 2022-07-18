@@ -68,6 +68,8 @@ class Celebrity:
                     self.race = tableData.next_sibling.get_text().strip(' ')
                 if ("trademark" in tableData_text2.lower()):
                     self.trademarks = tableData.next_sibling.get_text().strip(' ')
+                if ("zodiac" in tableData_text2.lower()):
+                    self.red_flags = tableData.next_sibling.get_text().strip(' ')
 
         quotes = []
         found = False
@@ -76,10 +78,4 @@ class Celebrity:
             if i == 1:
                 self.bio = child.get_text().strip(' ')
             i += 1
-            x = child.get_text()
-            if (re.search("quotes", x, re.IGNORECASE)):
-                found = True
-            if (found):
-                quotes.append(child.get_text().strip(' '))
-        if found != False:
-            self.red_flags = quotes[-1].split('.')[0].replace('\n', '')
+            break

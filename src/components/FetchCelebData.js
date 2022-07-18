@@ -92,7 +92,7 @@ export default class FetchCelebData extends React.Component {
             var hairColour = null
             var placeOfBirthText = null
             var ethnicityText = null
-            var redFlagLower = null
+            var redFlag = null
 
             if (celebJsx[this.state.index].weight != null) {
                 weight = " | " + celebJsx[this.state.index].weight + " pounds"
@@ -111,7 +111,15 @@ export default class FetchCelebData extends React.Component {
             }
 
             if (celebJsx[this.state.index].red_flags != null){
-                redFlagLower = (celebJsx[this.state.index].red_flags).toLowerCase()
+                if ((celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'a' || 
+                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'e' || 
+                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'i' || 
+                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'o' || 
+                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'u'){
+                    redFlag = "Is an " + (celebJsx[this.state.index].red_flags)
+                } else {
+                    redFlag = "Is a " + (celebJsx[this.state.index].red_flags)
+                }
             }
 
             if (celebJsx[this.state.index].race != null) {
@@ -158,7 +166,7 @@ export default class FetchCelebData extends React.Component {
                             </div>
                             <div>
                                 {redFlagImg}
-                                {redFlagLower}
+                                {redFlag}
                             </div>
                             <div>
                                 {personImg}

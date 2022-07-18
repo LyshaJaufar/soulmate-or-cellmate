@@ -83,7 +83,7 @@ def create_json_obj(actresses, links):
 
 
 def write_to_file():
-    jsonFile = open("src/data.json", "w")
+    jsonFile = open("data.json", "w")
     jsonFile.write(json.dumps(jsonObj))
     jsonFile.close()
 
