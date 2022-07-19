@@ -24,7 +24,6 @@ export default class FetchFelonData extends React.Component {
         for (var i = 0; i < numOfPages; i++) {
             dataPages.push(await (await fetch(`https://api.fbi.gov/wanted/v1/list?page=${i + 1}`)).json())
             allPages.push(dataPages[i].items)
-            // 
         }
 
         this.setState({ 
@@ -65,7 +64,6 @@ export default class FetchFelonData extends React.Component {
             description: felon.description ? felon.description : "missing"
         }));
         */
-        console.log(this.props.clicked)
         const felonsJsx = []
         for (var i = 0; i < this.state.felonsPages.length; i++) {
             this.state.felonsPages[i].forEach(felon => {
@@ -83,10 +81,12 @@ export default class FetchFelonData extends React.Component {
                     height: felon.height_max ? felon.height_max : null,
                     weight: felon.weight_max ? felon.weight_max : null,
                     redFlag: felon.warning_message ? felon.warning_message : null,
-                    description: felon.description ? felon.description : null
+                    description: felon.description ? felon.description : null,
+                    rewardText: felon.reward_text ? felon.reward_text : null
                 });
             });
         }
+
 
         if (this.state.loading) {
             return <div>loading...</div>;
@@ -175,7 +175,7 @@ export default class FetchFelonData extends React.Component {
             return (
                 <div class="content">
                     <div>
-                        <div>{felonsJsx[this.state.index].name}</div>
+                        <div class="personName">{felonsJsx[this.state.index].name}</div>
                         <hr></hr>
                     </div>
                     <div>
@@ -187,7 +187,7 @@ export default class FetchFelonData extends React.Component {
                 </div>
             );
         }
-
+        
         if (felonsJsx[this.state.index].name !== null) {
             return (
                     <div class="content">

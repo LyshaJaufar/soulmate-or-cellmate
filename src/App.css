@@ -1,3 +1,18 @@
+body {
+  background-color: pink;
+}
+
+hr {
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  border-top: 2px solid ;
+}
+
+img {
+  width: 15%;
+}
+
 .App {
   text-align: center;
 }
@@ -7,12 +22,16 @@
   pointer-events: none;
 }
 
-hr {
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 90%;
-  border-top: 2px solid ;
+.App-header {
+  display: none;
+}
 
+.App-link {
+  color: #61dafb;
+}
+
+.personName {
+  font-size: x-large;
 }
 
 .blurry-text {
@@ -21,7 +40,7 @@ hr {
 
 .content {
   font-weight: bolder;
-  font-size: medium;
+  font-size: auto;
   user-select: none;
   word-break: break-word;
   white-space: pre-wrap;
@@ -30,7 +49,6 @@ hr {
 .bio-text {
   padding-left: 5%;
   padding-right: 5%;
-  font-size: small;
 }
 
 .icon {
@@ -51,34 +69,47 @@ hr {
     height: 8vh;
     padding-left: 10%;
     padding-right: 10%;
+    padding-top: 0.8%;
 }
 
+.heart {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0 0 0 1px;
+  transform: rotate(-45deg);
+}
 
+.heart::before {
+  position: absolute;
+  content: "";
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.heart::after {
+  position: absolute;
+  content: "";
+  right: -50%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 50%;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  padding: 4%;
-  background-color: #78938A;
-  height: 7vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: smaller;
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-img {
-  width: 10%;
 }
 
 .container {
@@ -88,8 +119,12 @@ img {
 }
 
 .leftside, .rightside {
-  height: 42.5vh;
+  height: 46vh;
   width: 100%;
+}
+
+.card {
+  height: 46vh;
 }
 
 @media screen and (min-width:768px){
@@ -97,7 +132,7 @@ img {
     height: 77vh;
   }
   img{
-    width: 25%;
+    width: 20%;
   }
 
   .title{
@@ -107,6 +142,21 @@ img {
     font-size: larger;
   }
 
+  .App-header {
+    padding: 4%;
+    background-color: #78938A;
+    height: 7vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: smaller;
+    color: white;
+  }
+
+  .card {
+    height: 77vh;
+  }
 }
 
 .leftside {

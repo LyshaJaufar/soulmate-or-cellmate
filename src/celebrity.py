@@ -71,11 +71,17 @@ class Celebrity:
                 if ("zodiac" in tableData_text2.lower()):
                     self.red_flags = tableData.next_sibling.get_text().strip(' ')
 
-
         i = 0
         for child in doc.find(id="biography"):
             if i == 1:
-                self.bio = child.get_text().strip(' ')
+                if (len(child.get_text().strip(' ')) > 230):
+                    temp = child.get_text().strip(' ')[0:229].split('.')
+                    x = ""
+                    for i in range(len(temp) - 1):
+                        x += temp[i]
+                        x += "."
+                    self.bio = x
+                else:
+                    self.bio = child.get_text().strip(' ')
                 break
             i += 1
-           

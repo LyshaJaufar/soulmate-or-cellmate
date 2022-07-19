@@ -34,7 +34,7 @@ class App extends Component {
           title={"Matchmaking: Soulmates or Cellmates?"}
         />
         <Preface
-          preface={"Time to judge your awful taste in people. One is a celebrity. One is a criminal."}
+          preface={"Time to judge your awful taste in people. Who would you rather...?"}
         />
         <div className='App row no-gutters'>
           <div className='col-md-6 no-gutters'onClick={this.checkLeftClick}>
