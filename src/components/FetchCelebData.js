@@ -65,6 +65,7 @@ export default class FetchCelebData extends React.Component {
         if (this.state.celebData !== null){
             console.log(this.state.celebData)
             const celebJsx = this.state.celebData.map((celeb, i) => ({
+                name: celeb.name ? celeb.name : null,
                 DOB: celeb.DOB ? celeb.DOB : null,
                 image: celeb.image,
                 eyeColour: celeb['eye colour'] ? celeb['eye colour'] : null,
@@ -93,6 +94,11 @@ export default class FetchCelebData extends React.Component {
             var placeOfBirthText = null
             var ethnicityText = null
             var redFlag = null
+            var birthdayText = null
+
+            if (celebJsx[this.state.index].DOB != null) {
+                birthdayText = "Born in " + celebJsx[this.state.index].DOB
+            }
 
             if (celebJsx[this.state.index].weight != null) {
                 weight = " | " + celebJsx[this.state.index].weight + " pounds"
@@ -116,9 +122,9 @@ export default class FetchCelebData extends React.Component {
                 (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'i' || 
                 (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'o' || 
                 (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'u'){
-                    redFlag = "Is an " + (celebJsx[this.state.index].red_flags)
+                    redFlag = "Red flag: Is an " + (celebJsx[this.state.index].red_flags)
                 } else {
-                    redFlag = "Is a " + (celebJsx[this.state.index].red_flags)
+                    redFlag = "Red flag: Is a " + (celebJsx[this.state.index].red_flags)
                 }
             }
 
@@ -147,14 +153,34 @@ export default class FetchCelebData extends React.Component {
             if (celebJsx[this.state.index].red_flags != null && celebJsx[this.state.index].red_flags != "\u00a0") {
                 redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
             }
-            console.log(celebJsx[this.state.index].red_flag)
+
+        if (this.props.leftClicked == true){
+            return (
+                <div class="content">
+                    <div>
+                        <div>{celebJsx[this.state.index].name}</div>
+                        <hr></hr>
+                    </div>
+                    <div>
+                        <img src={celebJsx[this.state.index].image}></img>
+                    </div>
+                    <div>
+                        <div class='bio-text'>{celebJsx[this.state.index].bio}</div>
+                    </div>
+                </div>
+            );
+        }
 
             if (celebJsx[this.state.index].DOB !== "missing") {
                 return (
-                    <div>
+                    <div class="content">
                         <div>
                             <div>
-                                <div>{celebJsx[this.state.index].DOB}</div>
+                                <div class="blurry-text">{celebJsx[this.state.index].name}</div>
+                            </div>
+                            <div>
+                                <div>{birthdayText}</div>
+                                <hr></hr><br></br>
                             </div>
                             <div>
                                 {ethnicityImg} 

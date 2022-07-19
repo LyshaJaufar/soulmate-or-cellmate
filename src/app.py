@@ -60,11 +60,11 @@ def create_json_obj(actresses, links):
     actress_links_dict = dict(zip(actresses, links))
     for actress in actresses:
         if (actress != ''):
-            current_actress = Celebrity(actress.lower().replace(
-                ' ', '-'), actress_links_dict[actress])
+            current_actress = Celebrity(actress, actress_links_dict[actress])
             current_actress.fetch_data()
             jsonObj['results'].append({
 
+                "name": current_actress.name,
                 "DOB": current_actress.DOB,
                 "image": current_actress.img,
                 "eye colour": current_actress.eye_colour,

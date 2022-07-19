@@ -65,7 +65,7 @@ export default class FetchFelonData extends React.Component {
             description: felon.description ? felon.description : "missing"
         }));
         */
-
+        console.log(this.props.clicked)
         const felonsJsx = []
         for (var i = 0; i < this.state.felonsPages.length; i++) {
             this.state.felonsPages[i].forEach(felon => {
@@ -114,7 +114,12 @@ export default class FetchFelonData extends React.Component {
         var hairColour = null
         var placeOfBirthText = null
         var ethnicityText = null
-        
+        var birthdayText = null
+
+        if (felonsJsx[this.state.index].DOB != null) {
+            birthdayText = "Born in " + felonsJsx[this.state.index].DOB
+        }
+
         if (felonsJsx[this.state.index].height != null) {
             height = parseInt(felonsJsx[this.state.index].height) * 2.54
             heightText = String(height).substring(0, 3) + " CM"
@@ -137,7 +142,7 @@ export default class FetchFelonData extends React.Component {
         }
 
         if (felonsJsx[this.state.index].redFlag != null){
-            var redFlagLower = (felonsJsx[this.state.index].redFlag).toLowerCase()
+            var redFlagLower = "Red flag: " + (felonsJsx[this.state.index].redFlag).toLowerCase()
         }
 
         if (felonsJsx[this.state.index].race != null) {
@@ -166,12 +171,33 @@ export default class FetchFelonData extends React.Component {
             redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
         }
 
+        if (this.props.leftClicked == true){
+            return (
+                <div class="content">
+                    <div>
+                        <div>{felonsJsx[this.state.index].name}</div>
+                        <hr></hr>
+                    </div>
+                    <div>
+                        <img src={felonsJsx[this.state.index].image}></img>
+                    </div>
+                    <div>
+                        <div>{felonsJsx[this.state.index].description}</div>
+                    </div>
+                </div>
+            );
+        }
+
         if (felonsJsx[this.state.index].name !== null) {
             return (
-                    <div>
+                    <div class="content">
                         <div>
                             <div>
-                                <div>{this.state.index}{felonsJsx[this.state.index].name}, {felonsJsx[this.state.index].DOB}</div>
+                                <div class="blurry-text">{felonsJsx[this.state.index].name}</div>
+                            </div>
+                            <div>
+                                <div>{birthdayText}</div>
+                                <hr></hr><br></br>
                             </div>
                             <div>
                                 {ethnicityImg} 

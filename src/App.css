@@ -7,6 +7,32 @@
   pointer-events: none;
 }
 
+hr {
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  border-top: 2px solid ;
+
+}
+
+.blurry-text {
+  filter: blur(4px);
+}
+
+.content {
+  font-weight: bolder;
+  font-size: medium;
+  user-select: none;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.bio-text {
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: small;
+}
+
 .icon {
   width: 8%;
 }
@@ -20,7 +46,7 @@
 }
 
 .prefaceBG {
-    background-color: #282c34;
+    background-color: #78938A;
     color: white;
     height: 8vh;
     padding-left: 10%;
@@ -37,7 +63,7 @@
 
 .App-header {
   padding: 4%;
-  background-color: #282c34;
+  background-color: #78938A;
   height: 7vh;
   display: flex;
   flex-direction: column;
@@ -52,7 +78,7 @@
 }
 
 img {
-  width: 25%;
+  width: 10%;
 }
 
 .container {
@@ -84,11 +110,11 @@ img {
 }
 
 .leftside {
-  background: red;
+  background: #D9F8C4;
 }
 
 .rightside {
-  background: blue;
+  background: #C8E3D4;
 }
 
 @keyframes App-logo-spin {
