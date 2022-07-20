@@ -1,7 +1,3 @@
-body {
-  background-color: pink;
-}
-
 hr {
   margin-left: 5%;
   margin-right: 5%;
@@ -10,7 +6,7 @@ hr {
 }
 
 img {
-  width: 15%;
+  width: 13%;
 }
 
 .App {
@@ -31,7 +27,9 @@ img {
 }
 
 .personName {
-  font-size: x-large;
+
+  font-size: medium;
+  font-weight: bolder;
 }
 
 .blurry-text {
@@ -40,7 +38,7 @@ img {
 
 .content {
   font-weight: bolder;
-  font-size: auto;
+  font-size: smaller;
   user-select: none;
   word-break: break-word;
   white-space: pre-wrap;
@@ -61,50 +59,19 @@ img {
 
 .preface {
   font-size: medium;
+  font-weight: bolder;
 }
 
 .prefaceBG {
     background-color: #78938A;
     color: white;
-    height: 8vh;
+    height: 7vh;
     padding-left: 10%;
     padding-right: 10%;
-    padding-top: 0.8%;
+    padding-top: 0.5;
 }
 
-.heart {
-  position: relative;
-  height: 20px;
-  width: 20px;
-  background: white;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  border-radius: 0 0 0 1px;
-  transform: rotate(-45deg);
-}
 
-.heart::before {
-  position: absolute;
-  content: "";
-  top: -50%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  border-radius: 50%;
-}
-
-.heart::after {
-  position: absolute;
-  content: "";
-  right: -50%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  border-radius: 50%;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -119,18 +86,66 @@ img {
 }
 
 .leftside, .rightside {
-  height: 46vh;
+  height: 40vh;
   width: 100%;
 }
 
-.card {
-  height: 46vh;
+.footer-leftside, .footer-rightside {
+  height: 6vh;
+  width: 100%;
+  padding-bottom: 3%;
 }
+
+.circle {
+    border: 0.1875em solid #0F1C3F;
+    border-radius: 50%;
+    box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);
+    height: 6vh;
+    width: 6vh;
+}
+
+.circle:hover{
+  border-color: cyan;
+}
+
+.heart-img {
+  height: 90%;
+  padding-top: 20%;
+  padding-bottom: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
+}
+
 
 @media screen and (min-width:768px){
   .leftside, .rightside {
-    height: 77vh;
+    height: 66vh;
   }
+  .footer-leftside, .footer-rightside {
+    height: 12vh;
+    padding-bottom: 5%;
+    bottom: 0;
+  }
+
+  .App-footer {
+    display:flex;
+    background-color: transparent;
+    margin-left: -100%;
+    margin-top: -5%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .circle {
+      border: 0.1875em solid #0F1C3F;
+      border-radius: 50%;
+      box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);
+      height: 10vh;
+      width: 10vh;
+  }
+
   img{
     width: 20%;
   }
@@ -153,10 +168,12 @@ img {
     font-size: smaller;
     color: white;
   }
-
-  .card {
-    height: 77vh;
+  .content {
+    font-size: medium;
   }
+
+
+
 }
 
 .leftside {
@@ -166,6 +183,15 @@ img {
 .rightside {
   background: #C8E3D4;
 }
+
+.footer-leftside {
+  background: #D9F8C4;
+}
+
+.footer-rightside {
+  background: #C8E3D4;  
+}
+
 
 @keyframes App-logo-spin {
   from {

@@ -4,6 +4,7 @@ import person from "../assets/person.png";
 import ethnicity from "../assets/ethnicity.png";
 import occupation from "../assets/occupation.png";
 import red_flag from "../assets/red_flag.png";
+import heart from "../assets/heart.png";
 
 export default class FetchCelebData extends React.Component {
 
@@ -155,9 +156,9 @@ export default class FetchCelebData extends React.Component {
             }
 
         if (this.props.leftClicked == true){
+
             return (
                 <div class="content">
-  
                     <div>
                         <div class="personName">{celebJsx[this.state.index].name}</div>
                         <hr></hr>
@@ -202,7 +203,6 @@ export default class FetchCelebData extends React.Component {
                             <div>
                                 {hairColour}{eyeColour}                           
                             </div>
-                            <button onClick={this.next}>next</button>
                         </div>
                     </div>
                 );

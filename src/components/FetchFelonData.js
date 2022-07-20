@@ -4,6 +4,7 @@ import person from "../assets/person.png";
 import ethnicity from "../assets/ethnicity.png";
 import occupation from "../assets/occupation.png";
 import red_flag from "../assets/red_flag.png";
+import heart from "../assets/heart.png";
 
 export default class FetchFelonData extends React.Component {
 
@@ -218,7 +219,7 @@ export default class FetchFelonData extends React.Component {
                             <div>
                                 {hairColour}{eyeColour}                           
                             </div>
-                            <button onClick={this.next}>next</button>
+
                         </div>
                     </div>
             );
