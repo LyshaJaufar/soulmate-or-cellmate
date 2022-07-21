@@ -63,7 +63,7 @@ img {
 }
 
 .prefaceBG {
-    background-color: #78938A;
+    background-color: #87A8A4;
     color: white;
     height: 7vh;
     padding-left: 10%;
@@ -77,7 +77,7 @@ img {
 }
 
 .footer-colour {
-    background: #78938A;
+    background: #87A8A4;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -98,8 +98,27 @@ img {
   
 }
 
-.celebChosen {
-  color: green;
+.chosen {
+  color: #3CCF4E;
+  font-weight:900;
+
+}
+
+.comment {
+    text-transform: uppercase;
+    font-family: verdana;
+    font-size: large;
+    font-weight: 700;
+    color: #f5f5f5;
+    text-shadow: 1px 1px 1px #919191,
+        1px 2px 1px #919191,
+        1px 3px 1px #919191,
+        1px 4px 1px #919191,
+        1px 5px 1px #919191,
+        1px 6px 1px #919191,
+        1px 7px 1px #919191,
+    1px 18px 6px rgba(16,16,16,0.4),
+    1px 22px 10px rgba(16,16,16,0.2)
 }
 
 .footer-leftside, .footer-rightside {
@@ -132,7 +151,7 @@ img {
 .temp-space {
   width: 100%;
   height: 7vh;
-  background:  #C8E3D4;
+  background:  #E7FBBE;
 }
 
 
@@ -152,13 +171,13 @@ img {
 
   }
   .footer-colour{
-    background: linear-gradient(to right, #D9F8C4 50%, #C8E3D4 50%);
+    background: linear-gradient(to right, #D4F6CC 50%, #E7FBBE 50%);
   }
 
   .temp-space {
     width: 100%;
     height: 10vh;
-    background:  linear-gradient(to right, #D9F8C4 50%, #C8E3D4 50%);
+    background:  linear-gradient(to right, #D4F6CC 50%, #E7FBBE 50%);
   } 
 
   .circle {
@@ -182,7 +201,7 @@ img {
 
   .App-header {
     padding: 4%;
-    background-color: #78938A;
+    background-color: #87A8A4;
     height: 7vh;
     display: flex;
     flex-direction: column;
@@ -193,6 +212,7 @@ img {
   }
   .content {
     font-size: medium;
+
   }
 
 
@@ -200,19 +220,19 @@ img {
 }
 
 .leftside {
-  background: #D9F8C4;
+  background: #D4F6CC;
 }
 
 .rightside {
-  background: #C8E3D4;
+  background: #E7FBBE;
 }
 
 .footer-leftside {
-  background: #D9F8C4;
+  background: #D4F6CC;
 }
 
 .footer-rightside {
-  background: #C8E3D4;  
+  background: #E7FBBE;  
 }
 
 

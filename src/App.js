@@ -23,8 +23,8 @@ class App extends Component {
         rightClicked: false,
         celebJsxLength: 104, 
         felonJsxLength: 35,
-        celebIndex: Math.floor(Math.random() * CELEBJSXLENGTH) + 1,
-        felonIndex: Math.floor(Math.random() * FELONJSXLENGTH) + 1,
+        celebIndex: Math.floor(Math.random() * CELEBJSXLENGTH),
+        felonIndex: Math.floor(Math.random() * FELONJSXLENGTH),
         compOne: null,
         compTwo: null,
         clickedComp: null
@@ -39,7 +39,6 @@ class App extends Component {
     }
 
     checkRightClick = () => {
-
       this.setState({
         rightClicked: true,
         clickedComp: componentTwo
@@ -81,7 +80,7 @@ class App extends Component {
 
       var components = [
 
-        <FetchFelonData  felonIndex={this.state.felonIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchFelonData>,
+        <FetchFelonData  felonIndex={this.state.felonIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked} clickedComp={this.state.clickedComp}></FetchFelonData>,
         <FetchCelebData celebIndex={this.state.celebIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked} clickedComp={this.state.clickedComp}></FetchCelebData>
       
       ]

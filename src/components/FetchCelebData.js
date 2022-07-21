@@ -150,12 +150,13 @@ export default class FetchCelebData extends React.Component {
                 redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
             }
             
-            if ((this.props.rightClicked == true || this.props.leftClicked) ){
+            console.log(this.props.celebIndex)
+            if ((this.props.rightClicked == true || this.props.leftClicked) && this.props.clickedComp == 1){
 
                 return (
-                    <div class="content celebChosen">
+                    <div class="content">
                         <div>
-                            <div class="personName ">{celebJsx[this.props.celebIndex].name}</div>
+                            <div class="personName chosen">You picked: {celebJsx[this.props.celebIndex].name}</div>
                             <hr></hr>
                         </div>
                         <div >
@@ -164,12 +165,13 @@ export default class FetchCelebData extends React.Component {
                         <div>
                             <div class='bio-text'>{celebJsx[this.props.celebIndex].bio}</div>
                         </div>
-
+                        <br></br>
+                        <div class="comment">dodged a bullet... or did you?</div>
                     </div>
                 );
             }
 
-            if ((this.props.rightClicked == true || this.props.leftClicked)){
+            if ((this.props.rightClicked == true || this.props.leftClicked) && this.props.clickedComp == 0){
 
                 return (
                     <div class="content ">

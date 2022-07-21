@@ -107,7 +107,7 @@ export default class FetchFelonData extends React.Component {
                 });
             }
             */
-
+            console.log(this.props.felonIndex)
             var height = null
             var heightText = null
             var weight = null
@@ -172,7 +172,25 @@ export default class FetchFelonData extends React.Component {
                 redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
             }
 
-            if (this.props.rightClicked == true || this.props.leftClicked == true){
+            if ((this.props.rightClicked == true || this.props.leftClicked == true) && this.props.clickedComp == 0) {
+                return (
+                    <div class="content">
+                        <div>
+                            <div class="personName chosen">You picked: {felonsJsx[this.props.felonIndex].name}</div>
+                            <hr></hr>
+                        </div>
+                        <div>
+                            <img src={felonsJsx[this.props.felonIndex].image}></img>
+                        </div>
+                        <div>
+                            <div>{felonsJsx[this.props.felonIndex].description}</div>
+                        </div>
+                        <br></br>
+                        <div class="comment">questionable choice...</div>
+                    </div>
+                );                
+            }
+            if ((this.props.rightClicked == true || this.props.leftClicked == true) && this.props.clickedComp == 1){
                 return (
                     <div class="content">
                         <div>
