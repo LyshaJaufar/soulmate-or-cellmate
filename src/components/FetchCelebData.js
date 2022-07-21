@@ -56,7 +56,7 @@ export default class FetchCelebData extends React.Component {
     }   
   
     render() {
-
+        console.log(this.props.clickedComp)
         if (this.state.celebData !== null){
 
             const celebJsx = this.state.celebData.map((celeb, i) => ({
@@ -75,6 +75,10 @@ export default class FetchCelebData extends React.Component {
                 bio: celeb.bio ? celeb.bio : null,
                 occupation: celeb.occupation ? celeb.occupation : null              
             }));
+
+            if (this.state.loading) {
+                return <div>loading...</div>;
+            }  
 
             var weight = null
             var eyeColour = null
@@ -145,17 +149,11 @@ export default class FetchCelebData extends React.Component {
             if (celebJsx[this.props.celebIndex].red_flags != null && celebJsx[this.props.celebIndex].red_flags != "\u00a0") {
                 redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
             }
-
-
-            if (this.state.loading) {
-                return <div>loading...</div>;
-            }               
-
-            if (this.props.rightClicked == true){
+            
+            if ((this.props.rightClicked == true || this.props.leftClicked) ){
 
                 return (
-
-                    <div class="content ">
+                    <div class="content celebChosen">
                         <div>
                             <div class="personName ">{celebJsx[this.props.celebIndex].name}</div>
                             <hr></hr>
@@ -171,7 +169,7 @@ export default class FetchCelebData extends React.Component {
                 );
             }
 
-            if (this.props.leftClicked == true){
+            if ((this.props.rightClicked == true || this.props.leftClicked)){
 
                 return (
                     <div class="content ">

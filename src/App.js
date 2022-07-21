@@ -9,28 +9,53 @@ import NextButton from "./components/NextButton";
 
 var CELEBJSXLENGTH = 150
 var FELONJSXLENGTH = 34
+var componentOne = 0
+var componentTwo = 1
+
 
 class App extends Component {
 
-    state = {
-      leftClicked: false,
-      rightClicked: false,
-      celebJsxLength: 104, 
-      felonJsxLength: 35,
-      celebIndex: Math.floor(Math.random() * CELEBJSXLENGTH) + 1,
-      felonIndex: Math.floor(Math.random() * FELONJSXLENGTH) + 1,
-    };
+    constructor(props) {
+      super(props)
+
+      this.state = {
+        leftClicked: false,
+        rightClicked: false,
+        celebJsxLength: 104, 
+        felonJsxLength: 35,
+        celebIndex: Math.floor(Math.random() * CELEBJSXLENGTH) + 1,
+        felonIndex: Math.floor(Math.random() * FELONJSXLENGTH) + 1,
+        compOne: null,
+        compTwo: null,
+        clickedComp: null
+      };
+    }
     
     checkLeftClick = () => {
       this.setState({
-        leftClicked: true
+        leftClicked: true,
+        clickedComp: componentOne
       })
     }
 
     checkRightClick = () => {
+
       this.setState({
-        rightClicked: true
+        rightClicked: true,
+        clickedComp: componentTwo
       })
+    }
+
+    randomise = () => {
+        componentOne = Math.floor(Math.random() * 2)
+        componentTwo = null
+
+        for (var i = 0; i < 2; i++) {
+          if (i != componentOne) {
+            componentTwo = i;
+            break
+          }
+        }
     }
 
     next = () => {
@@ -42,11 +67,9 @@ class App extends Component {
         })
     };
 
-
     render() {
       var likeButton = <LikeButton></LikeButton>;
       var nextButton = <div class="footer-colour">hello</div>
-
       
       if (this.state.leftClicked == true || this.state.rightClicked == true) {
         likeButton = null
@@ -55,23 +78,13 @@ class App extends Component {
         likeButton = <LikeButton></LikeButton>
         nextButton = <div class="footer-colour"></div>
       }
-      
-      var componentOne = Math.floor(Math.random() * 2)
-      var componentTwo = null
+
       var components = [
 
         <FetchFelonData  felonIndex={this.state.felonIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchFelonData>,
-        <FetchCelebData celebIndex={this.state.celebIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchCelebData>
+        <FetchCelebData celebIndex={this.state.celebIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked} clickedComp={this.state.clickedComp}></FetchCelebData>
       
       ]
-      for (var i = 0; i < 2; i++) {
-        if (i != componentOne) {
-          componentTwo = i;
-          break
-        }
-      }
-      console.log(componentOne, componentTwo)
-
 
       return (
         
@@ -96,10 +109,10 @@ class App extends Component {
                    {components[componentTwo]}                     
                 </div>
                 <div className="footer-rightside d-flex justify-content-center align-items-center" >
-                    <div onClick={this.checkRightClick}>{likeButton}</div>
+                    <div onClick={this.checkRightClick} >{likeButton} </div>
                 </div>
             </div>
-            <div className='col-md-12 no-gutters footer-colour'>
+            <div className='col-md-12 no-gutters footer-colour' onClick={this.randomise}>
                   {(this.state.leftClicked == true || this.state.rightClicked == true) ? <NextButton clicked={this.next}></NextButton> : <div class='temp-space'></div>}
             </div>
           </div>
