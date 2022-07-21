@@ -6,14 +6,15 @@ import occupation from "../assets/occupation.png";
 import red_flag from "../assets/red_flag.png";
 import heart from "../assets/heart.png";
 
+
+
 export default class FetchCelebData extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = { 
             loading: true,
-            celebData: null,
-            index: 0
+            celebData: null
         };
     }
 
@@ -53,18 +54,162 @@ export default class FetchCelebData extends React.Component {
                     });
                 })
     }   
-    
-    next = () => {
-        this.setState({
-            index: this.state.index + 1
-        });
-    };
-
-
+  
     render() {
-    
+
         if (this.state.celebData !== null){
-            console.log(this.state.celebData)
+
+            const celebJsx = this.state.celebData.map((celeb, i) => ({
+                name: celeb.name ? celeb.name : null,
+                DOB: celeb.DOB ? celeb.DOB : null,
+                image: celeb.image,
+                eyeColour: celeb['eye colour'] ? celeb['eye colour'] : null,
+                hairColour: celeb['hair colour'] ? celeb['hair colour'] : null,
+                placeOfBirth: celeb['place of birth'] ? celeb['place of birth'] : null,
+                height: celeb['height'] ? celeb['height'] : null,            
+                weight: celeb.weight ? celeb.weight : null,
+                nationality: celeb.nationality ? celeb.nationality : null,
+                race: celeb.race ? celeb.race : null,
+                trademarks: celeb.trademarks ? celeb.trademarks : null,        
+                red_flags: celeb['red flags'] ? celeb['red flags'] : null,
+                bio: celeb.bio ? celeb.bio : null,
+                occupation: celeb.occupation ? celeb.occupation : null              
+            }));
+
+            var weight = null
+            var eyeColour = null
+            var hairColour = null
+            var placeOfBirthText = null
+            var ethnicityText = null
+            var redFlag = null
+            var birthdayText = null
+            var celebImg = null
+
+            if (celebJsx[this.props.celebIndex].DOB != null) {
+                birthdayText = "Born in " + celebJsx[this.props.celebIndex].DOB
+            }
+
+            if (celebJsx[this.props.celebIndex].weight != null) {
+                weight = " | " + celebJsx[this.props.celebIndex].weight + " pounds"
+            }
+
+            if (celebJsx[this.props.celebIndex].eyeColour != null) {
+                eyeColour = " | " + celebJsx[this.props.celebIndex].eyeColour + " eyes"
+            }
+
+            if (celebJsx[this.props.celebIndex].hairColour != null) {
+                hairColour = celebJsx[this.props.celebIndex].hairColour + " hair" 
+            }
+
+            if (celebJsx[this.props.celebIndex].placeOfBirth != null) {
+                placeOfBirthText = "Originally from " + celebJsx[this.props.celebIndex].placeOfBirth 
+            }
+            if (celebJsx[this.props.celebIndex].image != null) {
+                celebImg = <img src={celebJsx[this.props.celebIndex].image}></img>
+            }
+
+            if (celebJsx[this.props.celebIndex].red_flags != null){
+                if ((celebJsx[this.props.celebIndex].red_flags)[0].toLowerCase() == 'a' || 
+                (celebJsx[this.props.celebIndex].red_flags)[0].toLowerCase() == 'e' || 
+                (celebJsx[this.props.celebIndex].red_flags)[0].toLowerCase() == 'i' || 
+                (celebJsx[this.props.celebIndex].red_flags)[0].toLowerCase() == 'o' || 
+                (celebJsx[this.props.celebIndex].red_flags)[0].toLowerCase() == 'u'){
+                    redFlag = "Red flag: Is an " + (celebJsx[this.props.celebIndex].red_flags)
+                } else {
+                    redFlag = "Red flag: Is a " + (celebJsx[this.props.celebIndex].red_flags)
+                }
+            }
+
+            if (celebJsx[this.props.celebIndex].race != null) {
+                ethnicityText = " | " + celebJsx[this.props.celebIndex].race
+            }
+            
+            var ethnicityImg = null
+            var personImg = null
+            var occupationImg = null
+            var locationImg = null
+            var redFlagImg = null
+            
+            if (celebJsx[this.props.celebIndex].nationality != null || celebJsx[this.props.celebIndex].race != null) {
+                ethnicityImg = <img src={ethnicity} class="icon"  alt="ethnicity" />
+            }
+            if (celebJsx[this.props.celebIndex].height != null || celebJsx[this.props.celebIndex].weight != null) {
+                personImg = <img src={person} class="icon"  alt="person" />   
+            }
+            if (celebJsx[this.props.celebIndex].occupation != null) {
+                occupationImg = <img src={occupation} class="icon"  alt="occupation" /> 
+            }
+            if (celebJsx[this.props.celebIndex].placeOfBirth != null) {
+                locationImg = <img src={location} class="icon"  alt="location" />   
+            }
+            if (celebJsx[this.props.celebIndex].red_flags != null && celebJsx[this.props.celebIndex].red_flags != "\u00a0") {
+                redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
+            }
+
+
+            if (this.state.loading) {
+                return <div>loading...</div>;
+            }               
+
+            if (this.props.leftClicked == true || this.props.rightClicked == true){
+
+                return (
+                    <div class="content">
+                        <div>
+                            <div class="personName">{celebJsx[this.props.celebIndex].name}</div>
+                            <hr></hr>
+                        </div>
+                        <div>
+                            {celebImg}
+                        </div>
+                        <div>
+                            <div class='bio-text'>{celebJsx[this.props.celebIndex].bio}</div>
+                        </div>
+
+                    </div>
+                );
+            }
+
+            if (celebJsx[this.props.celebIndex].DOB !== "missing") {
+                return (
+                    <div class="content">
+                        <div>
+                            <div>
+                                <div class="blurry-text">{celebJsx[this.props.celebIndex].name}</div>
+                            </div>
+                            <div>
+                                <div>{birthdayText}</div>
+                                <hr></hr><br></br>
+                            </div>
+                            <div>
+                                {ethnicityImg} 
+                                {celebJsx[this.props.celebIndex].nationality}{ethnicityText}                      
+                            </div>
+                            <div>
+                                {locationImg}   
+                                {placeOfBirthText}                                       
+                            </div>
+                            <div>
+                                {redFlagImg}
+                                {redFlag}
+                            </div>
+                            <div>
+                                {personImg}
+                                {celebJsx[this.props.celebIndex].height}{weight}
+                            </div>
+                            <div>
+                                {hairColour}{eyeColour}                           
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+        }
+        
+        /*
+        if (this.state.celebData !== null){
+
             const celebJsx = this.state.celebData.map((celeb, i) => ({
                 name: celeb.name ? celeb.name : null,
                 DOB: celeb.DOB ? celeb.DOB : null,
@@ -83,7 +228,7 @@ export default class FetchCelebData extends React.Component {
             }));
 
 
-            if ((this.state.index % celebJsx.length) === 0) {
+            if ((this.props.index % celebJsx.length) === 0) {
                 this.setState({
                     index: 1
                 });
@@ -97,40 +242,141 @@ export default class FetchCelebData extends React.Component {
             var redFlag = null
             var birthdayText = null
 
-            if (celebJsx[this.state.index].DOB != null) {
-                birthdayText = "Born in " + celebJsx[this.state.index].DOB
+            if (celebJsx[this.props.index].DOB != null) {
+                birthdayText = "Born in " + celebJsx[this.props.index].DOB
             }
 
-            if (celebJsx[this.state.index].weight != null) {
-                weight = " | " + celebJsx[this.state.index].weight + " pounds"
+            if (celebJsx[this.props.index].weight != null) {
+                weight = " | " + celebJsx[this.props.index].weight + " pounds"
             }
 
-            if (celebJsx[this.state.index].eyeColour != null) {
-                eyeColour = " | " + celebJsx[this.state.index].eyeColour + " eyes"
+            if (celebJsx[this.props.index].eyeColour != null) {
+                eyeColour = " | " + celebJsx[this.props.index].eyeColour + " eyes"
             }
 
-            if (celebJsx[this.state.index].hairColour != null) {
-                hairColour = celebJsx[this.state.index].hairColour + " hair" 
+            if (celebJsx[this.props.index].hairColour != null) {
+                hairColour = celebJsx[this.props.index].hairColour + " hair" 
             }
 
-            if (celebJsx[this.state.index].placeOfBirth != null) {
-                placeOfBirthText = "Originally from " + celebJsx[this.state.index].placeOfBirth 
+            if (celebJsx[this.props.index].placeOfBirth != null) {
+                placeOfBirthText = "Originally from " + celebJsx[this.props.index].placeOfBirth 
             }
 
-            if (celebJsx[this.state.index].red_flags != null){
-                if ((celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'a' || 
-                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'e' || 
-                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'i' || 
-                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'o' || 
-                (celebJsx[this.state.index].red_flags)[0].toLowerCase() == 'u'){
-                    redFlag = "Red flag: Is an " + (celebJsx[this.state.index].red_flags)
+            if (celebJsx[this.props.index].red_flags != null){
+                if ((celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'a' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'e' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'i' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'o' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'u'){
+                    redFlag = "Red flag: Is an " + (celebJsx[this.props.index].red_flags)
                 } else {
-                    redFlag = "Red flag: Is a " + (celebJsx[this.state.index].red_flags)
+                    redFlag = "Red flag: Is a " + (celebJsx[this.props.index].red_flags)
                 }
             }
 
-            if (celebJsx[this.state.index].race != null) {
-                ethnicityText = " | " + celebJsx[this.state.index].race
+            if (celebJsx[this.props.index].race != null) {
+                ethnicityText = " | " + celebJsx[this.props.index].race
+            }
+            
+            var ethnicityImg = null
+            var personImg = null
+            var occupationImg = null
+            var locationImg = null
+            var redFlagImg = null
+
+            if (celebJsx[this.props.index].nationality != null || celebJsx[this.props.index].race != null) {
+                ethnicityImg = <img src={ethnicity} class="icon"  alt="ethnicity" />
+            }
+            if (celebJsx[this.props.index].height != null || celebJsx[this.props.index].weight != null) {
+                personImg = <img src={person} class="icon"  alt="person" />   
+            }
+            if (celebJsx[this.props.index].occupation != null) {
+                occupationImg = <img src={occupation} class="icon"  alt="occupation" /> 
+            }
+            if (celebJsx[this.props.index].placeOfBirth != null) {
+                locationImg = <img src={location} class="icon"  alt="location" />   
+            }
+            if (celebJsx[this.props.index].red_flags != null && celebJsx[this.props.index].red_flags != "\u00a0") {
+                redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
+            }
+
+
+
+            
+            
+            
+
+        }*/
+
+        /*
+        if (this.state.celebData !== null){
+
+            const celebJsx = this.state.celebData.map((celeb, i) => ({
+                name: celeb.name ? celeb.name : null,
+                DOB: celeb.DOB ? celeb.DOB : null,
+                image: celeb.image,
+                eyeColour: celeb['eye colour'] ? celeb['eye colour'] : null,
+                hairColour: celeb['hair colour'] ? celeb['hair colour'] : null,
+                placeOfBirth: celeb['place of birth'] ? celeb['place of birth'] : null,
+                height: celeb['height'] ? celeb['height'] : null,            
+                weight: celeb.weight ? celeb.weight : null,
+                nationality: celeb.nationality ? celeb.nationality : null,
+                race: celeb.race ? celeb.race : null,
+                trademarks: celeb.trademarks ? celeb.trademarks : null,        
+                red_flags: celeb['red flags'] ? celeb['red flags'] : null,
+                bio: celeb.bio ? celeb.bio : null,
+                occupation: celeb.occupation ? celeb.occupation : null              
+            }));
+
+
+            if ((this.props.index % celebJsx.length) === 0) {
+                this.setState({
+                    index: 1
+                });
+            }
+
+            var weight = null
+            var eyeColour = null
+            var hairColour = null
+            var placeOfBirthText = null
+            var ethnicityText = null
+            var redFlag = null
+            var birthdayText = null
+
+            if (celebJsx[this.props.index].DOB != null) {
+                birthdayText = "Born in " + celebJsx[this.props.index].DOB
+            }
+
+            if (celebJsx[this.props.index].weight != null) {
+                weight = " | " + celebJsx[this.props.index].weight + " pounds"
+            }
+
+            if (celebJsx[this.props.index].eyeColour != null) {
+                eyeColour = " | " + celebJsx[this.props.index].eyeColour + " eyes"
+            }
+
+            if (celebJsx[this.props.index].hairColour != null) {
+                hairColour = celebJsx[this.props.index].hairColour + " hair" 
+            }
+
+            if (celebJsx[this.props.index].placeOfBirth != null) {
+                placeOfBirthText = "Originally from " + celebJsx[this.props.index].placeOfBirth 
+            }
+
+            if (celebJsx[this.props.index].red_flags != null){
+                if ((celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'a' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'e' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'i' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'o' || 
+                (celebJsx[this.props.index].red_flags)[0].toLowerCase() == 'u'){
+                    redFlag = "Red flag: Is an " + (celebJsx[this.props.index].red_flags)
+                } else {
+                    redFlag = "Red flag: Is a " + (celebJsx[this.props.index].red_flags)
+                }
+            }
+
+            if (celebJsx[this.props.index].race != null) {
+                ethnicityText = " | " + celebJsx[this.props.index].race
             }
             
             var ethnicityImg = null
@@ -139,46 +385,46 @@ export default class FetchCelebData extends React.Component {
             var locationImg = null
             var redFlagImg = null
             
-            if (celebJsx[this.state.index].nationality != null || celebJsx[this.state.index].race != null) {
+            if (celebJsx[this.props.index].nationality != null || celebJsx[this.props.index].race != null) {
                 ethnicityImg = <img src={ethnicity} class="icon"  alt="ethnicity" />
             }
-            if (celebJsx[this.state.index].height != null || celebJsx[this.state.index].weight != null) {
+            if (celebJsx[this.props.index].height != null || celebJsx[this.props.index].weight != null) {
                 personImg = <img src={person} class="icon"  alt="person" />   
             }
-            if (celebJsx[this.state.index].occupation != null) {
+            if (celebJsx[this.props.index].occupation != null) {
                 occupationImg = <img src={occupation} class="icon"  alt="occupation" /> 
             }
-            if (celebJsx[this.state.index].placeOfBirth != null) {
+            if (celebJsx[this.props.index].placeOfBirth != null) {
                 locationImg = <img src={location} class="icon"  alt="location" />   
             }
-            if (celebJsx[this.state.index].red_flags != null && celebJsx[this.state.index].red_flags != "\u00a0") {
+            if (celebJsx[this.props.index].red_flags != null && celebJsx[this.props.index].red_flags != "\u00a0") {
                 redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
             }
 
-        if (this.props.leftClicked == true){
+            if (this.props.leftClicked == true){
 
-            return (
-                <div class="content">
-                    <div>
-                        <div class="personName">{celebJsx[this.state.index].name}</div>
-                        <hr></hr>
+                return (
+                    <div class="content">
+                        <div>
+                            <div class="personName">{celebJsx[this.props.index].name}</div>
+                            <hr></hr>
+                        </div>
+                        <div>
+                            <img src={celebJsx[this.props.index].image}></img>
+                        </div>
+                        <div>
+                            <div class='bio-text'>{celebJsx[this.props.index].bio}</div>
+                        </div>
                     </div>
-                    <div>
-                        <img src={celebJsx[this.state.index].image}></img>
-                    </div>
-                    <div>
-                        <div class='bio-text'>{celebJsx[this.state.index].bio}</div>
-                    </div>
-                </div>
-            );
-        }
+                );
+            }
 
-            if (celebJsx[this.state.index].DOB !== "missing") {
+            if (celebJsx[this.props.index].DOB !== "missing") {
                 return (
                     <div class="content">
                         <div>
                             <div>
-                                <div class="blurry-text">{celebJsx[this.state.index].name}</div>
+                                <div class="blurry-text">{celebJsx[this.props.index].name}</div>
                             </div>
                             <div>
                                 <div>{birthdayText}</div>
@@ -186,7 +432,7 @@ export default class FetchCelebData extends React.Component {
                             </div>
                             <div>
                                 {ethnicityImg} 
-                                {celebJsx[this.state.index].nationality}{ethnicityText}                      
+                                {celebJsx[this.props.index].nationality}{ethnicityText}                      
                             </div>
                             <div>
                                 {locationImg}   
@@ -198,7 +444,7 @@ export default class FetchCelebData extends React.Component {
                             </div>
                             <div>
                                 {personImg}
-                                {celebJsx[this.state.index].height}{weight}
+                                {celebJsx[this.props.index].height}{weight}
                             </div>
                             <div>
                                 {hairColour}{eyeColour}                           
@@ -208,14 +454,16 @@ export default class FetchCelebData extends React.Component {
                 );
             } else {
                 this.setState({
-                    index: this.state.index + 1
+                    index: this.props.index + 1
                 });
             }
         }
         if (this.state.loading) {
             return <div>loading...</div>;
-        }
+        }     
+        */
 
+        
     
     }
 }

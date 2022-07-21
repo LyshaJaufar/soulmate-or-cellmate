@@ -37,7 +37,23 @@ def main():
     if __name__ == 'main':
         app.run()
 
+    urls = ["https://celebrityxyz.com/list/profession/actor",
+            "https://celebrityxyz.com/list/profession/actress"]
+
     # Fetch celeb names from home page
+    for url in urls:
+        home_doc = BeautifulSoup(requests.get(url).text, "html.parser")
+        temp = []
+        for celeb in home_doc.find_all(class_="celebs_list"):
+            temp.append(celeb.get_text())
+        celebrities = temp[0].split('\n')
+
+        links = []
+        for link in home_doc.find_all('a'):
+            if not (re.search("list", link.get('href'))):
+                links.append(link.get('href'))
+
+    """
     home_url = f"https://celebrityxyz.com/list/profession/actor"
     home_page = requests.get(home_url).text
     home_doc = BeautifulSoup(home_page, "html.parser")
@@ -51,33 +67,33 @@ def main():
     for link in home_doc.find_all('a'):
         if not (re.search("list", link.get('href'))):
             links.append(link.get('href'))
-
-    create_json_obj(actresses, links)
+    """
+    create_json_obj(celebrities, links)
     write_to_file()
 
 
-def create_json_obj(actresses, links):
-    actress_links_dict = dict(zip(actresses, links))
-    for actress in actresses:
-        if (actress != ''):
-            current_actress = Celebrity(actress, actress_links_dict[actress])
-            current_actress.fetch_data()
+def create_json_obj(celebrities, links):
+    celeb_links_dict = dict(zip(celebrities, links))
+    for celeb in celebrities:
+        if (celeb != ''):
+            current_celeb = Celebrity(celeb, celeb_links_dict[celeb])
+            current_celeb.fetch_data()
             jsonObj['results'].append({
 
-                "name": current_actress.name,
-                "DOB": current_actress.DOB,
-                "image": current_actress.img,
-                "eye colour": current_actress.eye_colour,
-                "hair colour": current_actress.hair_colour,
-                "height": current_actress.height,
-                "weight": current_actress.weight,
-                "place of birth": current_actress.place_of_birth,
-                "nationality": current_actress.nationality,
-                "race": current_actress.race,
-                "trademarks": current_actress.trademarks,
-                "red flags": current_actress.red_flags,
-                "bio": current_actress.bio,
-                "occupation": current_actress.occupation
+                "name": current_celeb.name,
+                "DOB": current_celeb.DOB,
+                "image": current_celeb.img,
+                "eye colour": current_celeb.eye_colour,
+                "hair colour": current_celeb.hair_colour,
+                "height": current_celeb.height,
+                "weight": current_celeb.weight,
+                "place of birth": current_celeb.place_of_birth,
+                "nationality": current_celeb.nationality,
+                "race": current_celeb.race,
+                "trademarks": current_celeb.trademarks,
+                "red flags": current_celeb.red_flags,
+                "bio": current_celeb.bio,
+                "occupation": current_celeb.occupation
 
             })
 
