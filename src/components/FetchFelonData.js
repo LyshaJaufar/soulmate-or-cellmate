@@ -107,7 +107,7 @@ export default class FetchFelonData extends React.Component {
                 });
             }
             */
-            console.log(this.props.felonIndex)
+
             var height = null
             var heightText = null
             var weight = null

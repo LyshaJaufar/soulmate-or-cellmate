@@ -95,13 +95,11 @@ img {
 .leftside, .rightside {
   height: 37vh;
   width: 100%;
-  
 }
 
 .chosen {
   color: #3CCF4E;
   font-weight:900;
-
 }
 
 .comment {
@@ -154,7 +152,6 @@ img {
   background:  #E7FBBE;
 }
 
-
 @media screen and (min-width:768px){
   .leftside, .rightside {
     height: 56vh;
@@ -166,10 +163,9 @@ img {
   }
 
   .App-footer {
-    
     padding-left: 47%;
-
   }
+
   .footer-colour{
     background: linear-gradient(to right, #D4F6CC 50%, #E7FBBE 50%);
   }
@@ -214,9 +210,6 @@ img {
     font-size: medium;
 
   }
-
-
-
 }
 
 .leftside {
