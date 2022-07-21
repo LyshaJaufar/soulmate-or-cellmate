@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/soulmate-or-cellmate/build/precache-manifest.f4fbdea022a662afe45663a2966fd5b3.js"
+  "/soulmate-or-cellmate/precache-manifest.940223e5f21641beb18bb888abf4ecd3.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/soulmate-or-cellmate/build/index.html", {
+workbox.routing.registerNavigationRoute("/soulmate-or-cellmate/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
