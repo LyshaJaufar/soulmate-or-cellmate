@@ -7,6 +7,7 @@ import Preface from "./components/Preface";
 import LikeButton from "./components/LikeButton";
 import NextButton from "./components/NextButton";
 
+// Global variables
 var CELEBJSXLENGTH = 150
 var FELONJSXLENGTH = 34
 var componentOne = 0
