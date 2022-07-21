@@ -45,7 +45,7 @@ class App extends Component {
 
     render() {
       var likeButton = <LikeButton></LikeButton>;
-      var nextButton = null
+      var nextButton = <div class="footer-colour">hello</div>
 
       
       if (this.state.leftClicked == true || this.state.rightClicked == true) {
@@ -53,7 +53,7 @@ class App extends Component {
         nextButton = <NextButton clicked={this.next}></NextButton>
       } else {
         likeButton = <LikeButton></LikeButton>
-        nextButton = null
+        nextButton = <div class="footer-colour"></div>
       }
 
       //console.log((this.state.celebIndex % CELEBJSXLENGTH))
@@ -85,8 +85,8 @@ class App extends Component {
                     <div onClick={this.checkRightClick}>{likeButton}</div>
                 </div>
             </div>
-            <div className='col-md-12 no-gutters'>
-                {nextButton}
+            <div className='col-md-12 no-gutters footer-colour'>
+                  {(this.state.leftClicked == true || this.state.rightClicked == true) ? <NextButton clicked={this.next}></NextButton> : <div class='temp-space'></div>}
             </div>
           </div>
         </div>

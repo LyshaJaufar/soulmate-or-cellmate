@@ -71,11 +71,14 @@ img {
     padding-top: 0.5;
 }
 
-  .App-footer {
-    background-color: #78938A;
-    padding-left: 47%;
+.App-footer {
 
-  }
+    padding-left: 47%;
+}
+
+.footer-colour {
+    background: #78938A;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -126,6 +129,12 @@ img {
   width: 100%;
 }
 
+.temp-space {
+  width: 100%;
+  height: 7vh;
+  background:  #C8E3D4;
+}
+
 
 @media screen and (min-width:768px){
   .leftside, .rightside {
@@ -138,10 +147,19 @@ img {
   }
 
   .App-footer {
-    background-color: #78938A;
+    
     padding-left: 47%;
 
   }
+  .footer-colour{
+    background: linear-gradient(to right, #D9F8C4 50%, #C8E3D4 50%);
+  }
+
+  .temp-space {
+    width: 100%;
+    height: 10vh;
+    background:  linear-gradient(to right, #D9F8C4 50%, #C8E3D4 50%);
+  } 
 
   .circle {
       border: 0.1875em solid #0F1C3F;
