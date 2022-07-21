@@ -150,11 +150,31 @@ export default class FetchCelebData extends React.Component {
             if (this.state.loading) {
                 return <div>loading...</div>;
             }               
-            console.log(this.props.rightClicked)
-            if (this.props.leftClicked == true || this.props.rightClicked == true){
+
+            if (this.props.rightClicked == true){
 
                 return (
-                    <div class="content celebChosen">
+
+                    <div class="content ">
+                        <div>
+                            <div class="personName ">{celebJsx[this.props.celebIndex].name}</div>
+                            <hr></hr>
+                        </div>
+                        <div >
+                            {celebImg}
+                        </div>
+                        <div>
+                            <div class='bio-text'>{celebJsx[this.props.celebIndex].bio}</div>
+                        </div>
+
+                    </div>
+                );
+            }
+
+            if (this.props.leftClicked == true){
+
+                return (
+                    <div class="content ">
                         <div>
                             <div class="personName">{celebJsx[this.props.celebIndex].name}</div>
                             <hr></hr>

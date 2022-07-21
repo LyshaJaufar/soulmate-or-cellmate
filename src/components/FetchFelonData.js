@@ -85,7 +85,7 @@ export default class FetchFelonData extends React.Component {
 
                 });
             }
-            console.log(felonsJsx.length)      
+
 
             if (this.state.loading) {
                 return <div>loading...</div>;

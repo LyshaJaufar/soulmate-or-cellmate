@@ -99,11 +99,11 @@ img {
 }
 
 .celebChosen {
-  border: 5px solid lime;
+  color: green;
 }
 
 .footer-leftside, .footer-rightside {
-  height: 6vh;
+  height: 7vh;
   width: 100%;
   padding-bottom: 3%;
 }

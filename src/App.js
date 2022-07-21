@@ -7,8 +7,8 @@ import Preface from "./components/Preface";
 import LikeButton from "./components/LikeButton";
 import NextButton from "./components/NextButton";
 
-var CELEBJSXLENGTH = 151
-var FELONJSXLENGTH = 35
+var CELEBJSXLENGTH = 150
+var FELONJSXLENGTH = 34
 
 class App extends Component {
 
@@ -55,8 +55,22 @@ class App extends Component {
         likeButton = <LikeButton></LikeButton>
         nextButton = <div class="footer-colour"></div>
       }
+      
+      var componentOne = Math.floor(Math.random() * 2)
+      var componentTwo = null
+      var components = [
 
-      //console.log((this.state.celebIndex % CELEBJSXLENGTH))
+        <FetchFelonData  felonIndex={this.state.felonIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchFelonData>,
+        <FetchCelebData celebIndex={this.state.celebIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchCelebData>
+      
+      ]
+      for (var i = 0; i < 2; i++) {
+        if (i != componentOne) {
+          componentTwo = i;
+          break
+        }
+      }
+      console.log(componentOne, componentTwo)
 
 
       return (
@@ -71,7 +85,7 @@ class App extends Component {
           <div className='App row no-gutters'>
             <div className='col-md-6 no-gutters'>
                 <div className='leftside d-flex justify-content-center align-items-center'>
-                  <FetchFelonData  felonIndex={this.state.felonIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchFelonData>
+                  {components[componentOne]}
                 </div>
                 <div className="footer-leftside d-flex justify-content-center align-items-center" onClick={this.checkLeftClick}>
                     {likeButton}
@@ -79,7 +93,7 @@ class App extends Component {
             </div>
             <div className='col-md-6 no-gutters'>
                 <div className='rightside d-flex justify-content-center align-items-center'>
-                    <FetchCelebData celebIndex={this.state.celebIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchCelebData>                   
+                   {components[componentTwo]}                     
                 </div>
                 <div className="footer-rightside d-flex justify-content-center align-items-center" >
                     <div onClick={this.checkRightClick}>{likeButton}</div>
