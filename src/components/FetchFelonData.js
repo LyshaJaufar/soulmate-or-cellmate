@@ -108,69 +108,26 @@ export default class FetchFelonData extends React.Component {
             }
             */
 
+            // Define variables 
+            var weight = (felonsJsx[this.props.felonIndex].weight != null) ? " | " + felonsJsx[this.props.felonIndex].weight + " pounds" : null
+            var eyeColour = (felonsJsx[this.props.felonIndex].eyes != null) ? " | " + felonsJsx[this.props.felonIndex].eyes + " eyes" : null
+            var hairColour = (felonsJsx[this.props.felonIndex].hair != null) ? felonsJsx[this.props.felonIndex].hair + " hair" : null
+            var placeOfBirthText = (felonsJsx[this.props.felonIndex].placeOfBirth != null) ? "Originally from " + felonsJsx[this.props.felonIndex].placeOfBirth : null
+            var ethnicityText = (felonsJsx[this.props.felonIndex].race != null) ? " | " + felonsJsx[this.props.felonIndex].race : null
+            var birthdayText = (felonsJsx[this.props.felonIndex].DOB != null) ? "Born in " + felonsJsx[this.props.felonIndex].DOB : null
+            var redFlagLower = (felonsJsx[this.props.felonIndex].redFlag != null) ? "Red flag: " + (felonsJsx[this.props.felonIndex].redFlag).toLowerCase() : null
             var height = null
             var heightText = null
-            var weight = null
-            var eyeColour = null
-            var hairColour = null
-            var placeOfBirthText = null
-            var ethnicityText = null
-            var birthdayText = null
-
-            if (felonsJsx[this.props.felonIndex].DOB != null) {
-                birthdayText = "Born in " + felonsJsx[this.props.felonIndex].DOB
-            }
-
             if (felonsJsx[this.props.felonIndex].height != null) {
                 height = parseInt(felonsJsx[this.props.felonIndex].height) * 2.54
                 heightText = String(height).substring(0, 3) + " CM"
-            }
+            }  
+            var ethnicityImg = (felonsJsx[this.props.felonIndex].nationality != null || felonsJsx[this.props.felonIndex].race != null) ? <img src={ethnicity} class="icon"  alt="ethnicity" /> : null
+            var personImg = (felonsJsx[this.props.felonIndex].height != null || felonsJsx[this.props.felonIndex].weight != null) ? <img src={person} class="icon"  alt="person" /> : null
+            var occupationImg = (felonsJsx[this.props.felonIndex].occupation != null) ? <img src={occupation} class="icon"  alt="occupation" /> : null
+            var locationImg = (felonsJsx[this.props.felonIndex].placeOfBirth != null) ? <img src={location} class="icon"  alt="location" /> : null
+            var redFlagImg = (felonsJsx[this.props.felonIndex].redFlag != null) ? <img src={red_flag} class="icon"  alt="red flag" /> : null
 
-            if (felonsJsx[this.props.felonIndex].weight != null) {
-                weight = " | " + felonsJsx[this.props.felonIndex].weight + " pounds"
-            }
-
-            if (felonsJsx[this.props.felonIndex].eyes != null) {
-                eyeColour = " | " + felonsJsx[this.props.felonIndex].eyes + " eyes"
-            }
-
-            if (felonsJsx[this.props.felonIndex].hair != null) {
-                hairColour = felonsJsx[this.props.felonIndex].hair + " hair" 
-            }
-
-            if (felonsJsx[this.props.felonIndex].placeOfBirth != null) {
-                placeOfBirthText = "Originally from " + felonsJsx[this.props.felonIndex].placeOfBirth 
-            }
-
-            if (felonsJsx[this.props.felonIndex].redFlag != null){
-                var redFlagLower = "Red flag: " + (felonsJsx[this.props.felonIndex].redFlag).toLowerCase()
-            }
-
-            if (felonsJsx[this.props.felonIndex].race != null) {
-                ethnicityText = " | " + felonsJsx[this.props.felonIndex].race
-            }
-            
-            var ethnicityImg = null
-            var personImg = null
-            var occupationImg = null
-            var locationImg = null
-            var redFlagImg = null
-            
-            if (felonsJsx[this.props.felonIndex].nationality != null || felonsJsx[this.props.felonIndex].race != null) {
-                ethnicityImg = <img src={ethnicity} class="icon"  alt="ethnicity" />
-            }
-            if (felonsJsx[this.props.felonIndex].height != null || felonsJsx[this.props.felonIndex].weight != null) {
-                personImg = <img src={person} class="icon"  alt="person" />   
-            }
-            if (felonsJsx[this.props.felonIndex].occupation != null) {
-                occupationImg = <img src={occupation} class="icon"  alt="occupation" /> 
-            }
-            if (felonsJsx[this.props.felonIndex].placeOfBirth != null) {
-                locationImg = <img src={location} class="icon"  alt="location" />   
-            }
-            if (felonsJsx[this.props.felonIndex].redFlag != null) {
-                redFlagImg = <img src={red_flag} class="icon"  alt="red flag" />
-            }
 
             if ((this.props.rightClicked == true || this.props.leftClicked == true) && this.props.clickedComp == 0) {
                 return (
