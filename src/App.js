@@ -7,15 +7,18 @@ import Preface from "./components/Preface";
 import LikeButton from "./components/LikeButton";
 import NextButton from "./components/NextButton";
 
+var CELEBJSXLENGTH = 151
+var FELONJSXLENGTH = 35
+
 class App extends Component {
 
     state = {
       leftClicked: false,
       rightClicked: false,
-      celebIndex: Math.floor(Math.random() * this.state.celebJsxLength) + 1,
-      felonIndex: Math.floor(Math.random() * this.state.felonJsxLength) + 1,
       celebJsxLength: 104, 
-      felonJsxLength: 35
+      felonJsxLength: 35,
+      celebIndex: Math.floor(Math.random() * CELEBJSXLENGTH) + 1,
+      felonIndex: Math.floor(Math.random() * FELONJSXLENGTH) + 1,
     };
     
     checkLeftClick = () => {
@@ -79,8 +82,11 @@ class App extends Component {
                     <FetchCelebData celebIndex={this.state.celebIndex} leftClicked={this.state.leftClicked} rightClicked={this.state.rightClicked}></FetchCelebData>                   
                 </div>
                 <div className="footer-rightside d-flex justify-content-center align-items-center" >
-                    {likeButton}{nextButton}
+                    <div onClick={this.checkRightClick}>{likeButton}</div>
                 </div>
+            </div>
+            <div className='col-md-12 no-gutters'>
+                {nextButton}
             </div>
           </div>
         </div>

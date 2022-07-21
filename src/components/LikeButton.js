@@ -5,7 +5,7 @@ export default class LikeButton extends React.Component {
   render() {
     return (
       <footer >
-        <div class="circle">
+        <div class="circle" >
             <img class="heart-img" src={heart}></img>
         </div>
       </footer>
