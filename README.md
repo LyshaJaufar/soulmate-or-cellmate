@@ -7,7 +7,7 @@ The player is presented with two options at a time. One person is a celebrity, a
 
 
 # What I learnt
-** React framework
-** Fetching data from an API using fetch API
-** Building a REST API using python flask
-** Parsing json data in JS
+* React framework
+* Fetching data from an API using fetch API
+* Building a REST API using python flask
+* Parsing json data in JS
