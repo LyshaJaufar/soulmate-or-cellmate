@@ -7,7 +7,7 @@ A who would you rather game where the player is tested on their judge of charact
 The player is presented with two options at a time. One person is a celebrity, and the other is a criminal. Once you've decided your pick between the two, click it to see whether you made the right choice for yourself.
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/63420202/183263378-9e95e381-035b-4037-aa9b-662cd2d2917e.gif">
+<img src="https://user-images.githubusercontent.com/63420202/c2a20804df1cdfc8a0537c47ec4a22242655a1e3/ezgif.com-gif-maker(1).gif">
 </p>
 
 
